@@ -11,7 +11,7 @@ from jose import(
     jwt
 )
 
-from app.auth.jwt_handler import(
+from app.config import(
     SECRET_KEY,
     ALGORITHM
 )
