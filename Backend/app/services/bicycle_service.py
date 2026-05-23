@@ -171,10 +171,12 @@ def delete_bicycle_service(
         "message":"Bicycle deleted successfully"
     }
 
-
 def get_bicycle_status(parts):
+
     for part in parts:
-        if part.stage != 'Done':
+
+        if part.stage != "Done":
 
             return "In Progress"
-        return "Done"
+
+    return "Done"

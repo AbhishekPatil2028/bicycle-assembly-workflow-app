@@ -8,6 +8,10 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 
+from app.auth.oauth2 import(
+    get_current_user
+)
+
 from app.schemas.bicycle_schema import (
     BicycleCreate,
     BicycleUpdate,
@@ -48,7 +52,8 @@ def create_bicycle(
     response_model=list[BicycleResponse],
 )
 def get_bicycles(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
 
     return get_all_bicycles_controller(db)
@@ -60,7 +65,8 @@ def get_bicycles(
     )
 def get_single_bicycle(
     bicycle_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
     return get_single_bicycle_controller(
         bicycle_id,
@@ -74,7 +80,8 @@ def get_single_bicycle(
 def update_bicycle(
     bicycle_id: int,
     bicycle:BicycleUpdate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
 
   return update_bicycle_controller(
@@ -88,7 +95,8 @@ def update_bicycle(
 )
 def delete_bicycle(
     bicycle_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
     return delete_bicycle_controller(
         bicycle_id,

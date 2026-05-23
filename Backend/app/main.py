@@ -4,6 +4,7 @@ from app.database import engine, Base
 
 from app.models.bicycle import Bicycle
 from app.models.part import Part
+from app.models.user import User
 
 
 from app.routes.bicycle_routes import (
@@ -13,6 +14,9 @@ from app.routes.bicycle_routes import (
 from app.routes.part_routes import(
     router as part_router
 )
+from app.routes.user_routes import(
+    router as user_router
+)
 
 Base.metadata.create_all(bind=engine)
 
@@ -21,6 +25,7 @@ app = FastAPI()
 
 app.include_router(bicycle_router)
 app.include_router(part_router)
+app.include_router(user_router)
 
 @app.get("/")
 def home():
