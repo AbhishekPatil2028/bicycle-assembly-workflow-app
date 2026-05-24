@@ -24,7 +24,8 @@ def create_bicycle_service(
             )
 
         new_bicycle = Bicycle(
-            name=bicycle_name
+            name=bicycle_name,
+            status ="Pending"
         )
 
         db.add(new_bicycle)
@@ -120,7 +121,18 @@ def get_single_bicycle_service(
         "id":bicycle.id,
         "name":bicycle.name,
         "created_at":bicycle.created_at,
-        "status":status_value
+        "status":status_value,
+        "parts": [
+            {
+                "id": part.id,
+                "part_name": part.part_name,
+                "quantity": part.quantity,
+                "stage": part.stage,
+                "bicycle_id": part.bicycle_id
+            }
+
+            for part in bicycle.parts
+        ]
     }
 
 

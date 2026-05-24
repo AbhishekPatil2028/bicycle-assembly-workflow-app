@@ -14,6 +14,11 @@ class Bicycle(Base):
 
     created_at = Column(DateTime, default=datetime.utcnow)
 
+    status = Column(
+        String,
+        default="Pending"
+    )
+
     parts = relationship(
         "Part",
         back_populates="bicycle",
