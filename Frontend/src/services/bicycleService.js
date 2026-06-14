@@ -17,15 +17,12 @@ async (id) => {
   return response.data;
 };
 
-import axios from "axios";
-
 export const updatePartQuantity = async (
   partId,
   quantity
 ) => {
-
-  const response = await axios.put(
-    `http://localhost:8000/parts/${partId}/quantity`,
+  const response = await axiosInstance.put(
+    `/parts/${partId}/quantity`,
     {
       quantity,
     }

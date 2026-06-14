@@ -80,12 +80,12 @@ function useBicycleDetails(id) {
             : part,
         );
 
-        const allDone = updatedParts.every((part) => part.stage === "Done");
+        const allDone = updatedParts.every((part) => part.stage === "Ready To Dispatch");
 
         return {
           ...prev,
 
-          status: allDone ? "Done" : "In Progress",
+          status: allDone ? "Ready To Dispatch" : "In Progress",
 
           parts: updatedParts,
         };

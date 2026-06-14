@@ -58,7 +58,7 @@ const BicycleCard = React.memo(({
         <span
           className={`px-4 py-2 rounded-full text-sm font-semibold
 
-          ${bicycle.status === "Done"
+          ${bicycle.status === "Ready To Dispatch"
 
             ? "bg-green-100 text-green-600"
 

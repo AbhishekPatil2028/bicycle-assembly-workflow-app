@@ -121,50 +121,44 @@ def get_dashboard_data(
         Part.stage == "Procurement"
     ).count()
 
-
     assembly_count = db.query(Part).filter(
         Part.stage == "Assembly"
     ).count()
-
 
     testing_count = db.query(Part).filter(
         Part.stage == "Testing"
     ).count()
 
+    ready_parts_count = db.query(Part).filter(
+        Part.stage == "Ready To Dispatch"
+    ).count()
 
     bicycles = db.query(Bicycle).all()
 
     ready_to_dispatch_count = 0
-
+    in_progress_count = 0
 
     for bicycle in bicycles:
-
         all_ready = all(
-
-            part.stage ==
-            "Ready To Dispatch"
-
+            part.stage == "Ready To Dispatch"
             for part in bicycle.parts
         )
-
         if all_ready:
-
             ready_to_dispatch_count += 1
-
+        else:
+            in_progress_count += 1
 
     return {
-
-        "procurement":
-            procurement_count,
-
-        "assembly":
-            assembly_count,
-
-        "testing":
-            testing_count,
-
-        "ready_to_dispatch":
-            ready_to_dispatch_count
+        "bicycles": {
+            "in_progress": in_progress_count,
+            "ready_to_dispatch": ready_to_dispatch_count
+        },
+        "parts": {
+            "procurement": procurement_count,
+            "assembly": assembly_count,
+            "testing": testing_count,
+            "ready_to_dispatch": ready_parts_count
+        }
     }
     
 @router.get(

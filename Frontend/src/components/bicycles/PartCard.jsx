@@ -42,12 +42,21 @@ const PartCard = React.memo(
           </span>
         </p>
 
-        <button
-          onClick={() => handleMoveStage(part.id)}
-          className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-        >
-          Move To Next Stage
-        </button>
+        {part.stage === "Ready To Dispatch" ? (
+          <button
+            disabled
+            className="mt-4 bg-gray-300 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed w-full font-medium"
+          >
+            ✓ Part Completed
+          </button>
+        ) : (
+          <button
+            onClick={() => handleMoveStage(part.id)}
+            className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg w-full font-medium transition duration-200"
+          >
+            Move To Next Stage
+          </button>
+        )}
       </div>
     );
   },

@@ -31,7 +31,7 @@ app.add_middleware(
 
     # allow_origins=[
     #     "http://localhost:5173",
-    #     "https://bicycle-assembly-workflow-app-beta.vercel.app/"
+    #     "https://bicycle-assembly-workflow-app-beta.vercel.app"
     # ],
     allow_origins=["*"],
 
