@@ -18,7 +18,7 @@ import {
 
   getReadyBicycles
 
-} from "../services/readyBicycleService";
+} from "../services/readyBicycleServices";
 
 
 import BicycleCard
