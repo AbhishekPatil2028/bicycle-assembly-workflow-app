@@ -5,7 +5,8 @@ from app.services.bicycle_service import (
     get_all_bicycles_service,
     get_single_bicycle_service,
     update_bicycle_service,
-    delete_bicycle_service
+    delete_bicycle_service,
+    get_ready_bicycles_service
 )
 
 
@@ -56,3 +57,8 @@ def delete_bicycle_controller(
         bicycle_id
     )
 
+def get_ready_bicycles_controller(
+    db: Session
+):
+
+    return get_ready_bicycles_service(db)

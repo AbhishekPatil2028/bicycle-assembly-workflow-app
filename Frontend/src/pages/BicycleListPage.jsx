@@ -3,10 +3,7 @@ import { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-// import {
-//   getBicycles,
-//   createBicycle
-// } from "../services/bicycleService";
+
 import useBicycles
 from "../hooks/useBicycles";
 
@@ -52,14 +49,47 @@ function BicycleListPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className=" p-8">
       <div className="max-w-6xl mx-auto">
-        <PageHeader
-          title="Bicycle List"
-          buttonText="Logout"
-          onButtonClick={handleLogout}
-        />
+ <div className="flex justify-between items-center mb-8">
 
+  <h1 className="text-4xl font-bold text-gray-800">
+
+    Bicycle List
+
+  </h1>
+
+
+  <div className="flex gap-4">
+
+    {/* <button
+
+      onClick={() =>
+        navigate("/dashboard")
+      }
+
+      className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-semibold"
+    >
+
+      Dashboar
+
+    </button> */}
+
+
+    <button
+
+      onClick={handleLogout}
+
+      className="bg-red-500 hover:bg-red-600 text-white px-5 py-3 rounded-lg font-semibold"
+    >
+
+      Logout
+
+    </button>
+
+  </div>
+
+</div>
         <CreateBicycleForm
           bicycleName={bicycleName}
           setBicycleName={setBicycleName}

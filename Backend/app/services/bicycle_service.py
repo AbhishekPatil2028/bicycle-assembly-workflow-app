@@ -69,7 +69,9 @@ def get_all_bicycles_service(
 
     try:
 
-        bicycles = db.query(Bicycle).all()
+        bicycles = db.query(Bicycle).order_by(
+         Bicycle.updated_at.desc()
+      ).all()
         response = []
 
         for bicycle in bicycles:
@@ -187,8 +189,46 @@ def get_bicycle_status(parts):
 
     for part in parts:
 
-        if part.stage != "Done":
+        if part.stage != "Ready To Dispatch":
 
             return "In Progress"
 
-    return "Done"
+    return "Ready To Dispatch"
+
+
+def get_ready_bicycles_service(
+    db: Session
+):
+
+    bicycles = db.query(Bicycle).all()
+
+    ready_bicycles = []
+
+    for bicycle in bicycles:
+
+        all_ready = all(
+
+            part.stage ==
+            "Ready To Dispatch"
+
+            for part in bicycle.parts
+        )
+
+        if all_ready:
+
+            ready_bicycles.append({
+
+                "id":
+                    bicycle.id,
+
+                "name":
+                    bicycle.name,
+
+                "created_at":
+                    bicycle.created_at,
+
+                "status":
+                    "Ready To Dispatch"
+            })
+
+    return ready_bicycles

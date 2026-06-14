@@ -19,6 +19,12 @@ class Bicycle(Base):
         default="Pending"
     )
 
+    updated_at = Column(
+    DateTime,
+    default=datetime.utcnow,
+    onupdate=datetime.utcnow
+)
+
     parts = relationship(
         "Part",
         back_populates="bicycle",
